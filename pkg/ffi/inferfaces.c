@@ -1,6 +1,9 @@
 #include "include/interfaces.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
+
+
+volatile int p;
 
 int load_data(char* path, void* dataaddr, void* lockaddr, int size) {
     // load the data lazily into data_addr from the path
@@ -12,8 +15,13 @@ int load_data(char* path, void* dataaddr, void* lockaddr, int size) {
     printf("value of lock: %d\n", *lock_addr);
     printf("load_data: addr of lock: %p\n", lock_addr);
     int iter = 4;
+    p = *lock_addr;
+
     while(iter > 0) {
-        if(*lock_addr == 1) {
+        // printf("loader.\n");
+        p = *lock_addr;
+        
+        if(p == 1) {
             
             // load the data
             printf("load_data: loading data...\n");
@@ -24,6 +32,9 @@ int load_data(char* path, void* dataaddr, void* lockaddr, int size) {
             count++;
             *lock_addr = 2; // indicate data loading is complete.
         }
+        // sleep(1);
     }
+    
+    printf("load_data: outside the loop\n");
     return 1;
 }

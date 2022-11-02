@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define SIZE 10
+#define SIZE 20
 int main() {
     printf("Starting C program...\n");
     int* data_addr = (int*)(malloc(SIZE*sizeof(int)));

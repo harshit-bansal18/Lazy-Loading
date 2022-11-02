@@ -9,4 +9,4 @@ build/liblazy.a:
 	$(GOBUILD) -o $@ ./cmd/lazymod/main.go
 
 clean:
-	rm -rf build/lib* main
+	rm -rf build/lib* build/main
