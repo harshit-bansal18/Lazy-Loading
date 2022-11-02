@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
 volatile int p;
 
 int load_data(char* path, void* dataaddr, void* lockaddr, int size) {
@@ -34,7 +33,7 @@ int load_data(char* path, void* dataaddr, void* lockaddr, int size) {
         }
         // sleep(1);
     }
-    
+
     printf("load_data: outside the loop\n");
     return 1;
 }

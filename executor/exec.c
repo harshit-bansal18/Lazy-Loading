@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
 volatile int val;
 
 void execute(void* data_addr, void* lock_addr, int size) {
@@ -22,12 +21,12 @@ void execute(void* data_addr, void* lock_addr, int size) {
             }
             printf("\n");
             iter++;
-            (*(la)) = 1; // set to one
+            *(la) = 1; // set to one
         }
         // sleep(1);
 
 	}
-    
+
     printf("execute: outside the loop\n");
     *la = -1;
     return;
