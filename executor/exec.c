@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-volatile int val;
+// Global variable initialization
+volatile int val; // comment this while using local variable
 
 void execute(void* data_addr, void* lock_addr, int size) {
 
@@ -10,6 +11,8 @@ void execute(void* data_addr, void* lock_addr, int size) {
     int* da = (int*)(data_addr);
     
     printf("execute: addr of lock: %p\n", la);
+    // uncomment below line for local initialization
+    // volatile int val;
     val = *la;
 	while(iter < 4) {
         // printf("consumer.\n");

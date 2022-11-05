@@ -2,7 +2,10 @@
 #include <stdio.h>
 #include <unistd.h>
 
-volatile int p;
+
+// Initialized as Global variable
+// Does not work on Mac M1 when initialized as local variable
+volatile int p; // comment this when using local variable
 
 int load_data(char* path, void* dataaddr, void* lockaddr, int size) {
     // load the data lazily into data_addr from the path
@@ -14,6 +17,8 @@ int load_data(char* path, void* dataaddr, void* lockaddr, int size) {
     printf("value of lock: %d\n", *lock_addr);
     printf("load_data: addr of lock: %p\n", lock_addr);
     int iter = 4;
+    // uncomment this line to initialize as local variable
+    // volatile int p;
     p = *lock_addr;
 
     while(iter > 0) {
